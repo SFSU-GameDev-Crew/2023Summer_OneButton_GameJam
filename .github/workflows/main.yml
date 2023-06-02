@@ -42,7 +42,7 @@ jobs:
       # Output
       - name: Upload artifact
         uses: actions/upload-artifact@v2
-        if: github.ref == 'refs/heads/master' || github.event_name == 'pull_request'
+        if: github.ref == 'refs/heads/master' || github.event_name == 'push'
         with:
           versioning: Semantic
           name: Build
