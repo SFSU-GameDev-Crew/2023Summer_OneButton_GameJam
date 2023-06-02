@@ -40,7 +40,10 @@ jobs:
           targetPlatform: WebGL
 
       # Output
-      - uses: actions/upload-artifact@v2
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        if: github.ref == 'refs/heads/master' || github.event_name == 'pull_request'
         with:
+          versioning: Semantic
           name: Build
           path: build
