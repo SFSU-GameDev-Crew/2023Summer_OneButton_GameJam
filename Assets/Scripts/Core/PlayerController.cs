@@ -5,19 +5,51 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> possibleElementals;
-    [SerializeField] private float forward_offset = 1.0f;
+
+    [Header("Elemental Placeholder")]
+    [SerializeField] private float elementalSpawnTimer = 0.5f;
+    [SerializeField] private float fireCooldownInSeconds;
+    [SerializeField] private Cooldown fireCooldown;
+    [SerializeField] private GameObject placeholder;
+    private bool canShoot;
 
     [Header("Player Rotation")]
     [SerializeField] private float rotationSpeed = 1.0f;
 
-    private void Update()
+    private ILaunch currentElemental; 
+    [SerializeField] private GameObject currentElementalGameObject;
+
+    private void Start()
+    {
+        SpawnElemental();
+        canShoot = true;
+    }
+
+    private void OnEnable()
+    {
+        fireCooldown.onCooldownOver += ResetShootTimer;
+    }
+    
+    private void OnDisable()
+    {
+        fireCooldown.onCooldownOver -= ResetShootTimer;
+    }
+
+    private void ResetShootTimer()
+    {
+        canShoot = true;
+    }
+
+    private void FixedUpdate()
     {
         // Shoots a projectile in the forward direction
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && canShoot)
         {
+            canShoot = false;
+            fireCooldown.SetCooldown(fireCooldownInSeconds);
             // Choose random element and launches it forward
             // from the player's direction
-            SpawnAndLaunchElemental();
+            StartCoroutine("PerformShoot");
         }
 
         // Rotates the Camera
@@ -27,14 +59,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private GameObject SpawnAndLaunchElemental()
+    private GameObject SpawnElemental()
     {
         // Choose random element
         int rng = Random.Range(0, possibleElementals.Count);
         GameObject randomElemental = possibleElementals[rng];
         
-        // Sets the offset position
-        Vector3 offset_position = transform.position + transform.right * forward_offset;
-        return Instantiate(randomElemental, offset_position, transform.rotation);
+        // Spawn Elemental
+        currentElementalGameObject = Instantiate(randomElemental, placeholder.transform.position, transform.rotation, placeholder.transform);
+        
+        // Launch Elemental
+        currentElemental = currentElementalGameObject.GetComponent<ILaunch>();
+
+        return currentElementalGameObject;
+    }
+
+    // Wait is needed for the projectile to leave from the placeholder
+    private IEnumerator PerformShoot()
+    {
+        currentElementalGameObject.transform.SetParent(null, true);
+        currentElemental.Launch();
+        yield return new WaitForSeconds(elementalSpawnTimer);
+        SpawnElemental();
     }
 }

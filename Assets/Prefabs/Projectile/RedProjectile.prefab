@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1027446222694689394, guid: acb93e905c64816e58e9d0699f0e6a3f, type: 3}
+      propertyPath: force_magnitude
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4188643034428624943, guid: acb93e905c64816e58e9d0699f0e6a3f, type: 3}
       propertyPath: m_Name
       value: RedProjectile

@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 455598995624340841, guid: ed1102c513ccf74efaad951b7c843138, type: 3}
+      propertyPath: force_magnitude
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3616857378784696116, guid: ed1102c513ccf74efaad951b7c843138, type: 3}
       propertyPath: m_Name
       value: CyanProjectile
