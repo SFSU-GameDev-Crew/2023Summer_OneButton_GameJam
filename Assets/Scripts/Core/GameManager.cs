@@ -38,8 +38,18 @@ public class GameManager : MonoBehaviour
         if(numOfSpawns > 0)
         {
             GameObject newElemental = SpawnElemental();
+            IFollowPath followPathComponent = newElemental.GetComponent<IFollowPath>();
+            followPathComponent.SetPath(path);
+            
             elementals.Add(newElemental);
             numOfSpawns--;
+        }
+
+        // Move each elemental
+        foreach (GameObject element in elementals)
+        {
+            IFollowPath followPathComponent = element.GetComponent<IFollowPath>();
+            followPathComponent.MoveToNextNode();
         }
     }
 
