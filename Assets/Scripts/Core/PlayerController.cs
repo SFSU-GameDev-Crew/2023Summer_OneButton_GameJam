@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private bool isOn;
-    [SerializeField] private GameObject projectile_prefab;
+    [SerializeField] private List<GameObject> possibleElementals;
     [SerializeField] private float forward_offset = 1.0f;
 
     [Header("Player Rotation")]
@@ -16,8 +15,9 @@ public class PlayerController : MonoBehaviour
         // Shoots a projectile in the forward direction
         if(Input.GetButtonDown("Jump"))
         {
-            Vector3 offset_position = transform.position + transform.right * forward_offset;
-            Instantiate(projectile_prefab, offset_position, transform.rotation);
+            // Choose random element and launches it forward
+            // from the player's direction
+            SpawnAndLaunchElemental();
         }
 
         // Rotates the Camera
@@ -25,5 +25,16 @@ public class PlayerController : MonoBehaviour
         {
             transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime * Mathf.Rad2Deg);
         }
+    }
+
+    private GameObject SpawnAndLaunchElemental()
+    {
+        // Choose random element
+        int rng = Random.Range(0, possibleElementals.Count);
+        GameObject randomElemental = possibleElementals[rng];
+        
+        // Sets the offset position
+        Vector3 offset_position = transform.position + transform.right * forward_offset;
+        return Instantiate(randomElemental, offset_position, transform.rotation);
     }
 }
