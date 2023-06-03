@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Elementals")]
     [SerializeField] private int numOfSpawns;
-    [SerializeField] private GameObject elemental;
+    [SerializeField] private List<GameObject> possibleElementals;
     
     [Header("Tick")]
     [SerializeField] private bool useMetronomeTimer;
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> path;
     private List<Vector3> pathInVector;
 
-    [SerializeField] private List<GameObject> elementals;
+    private List<GameObject> elementals;
 
     private void Start()
     {
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
             metronome.SetInterval(interval);
 
         pathInVector = new List<Vector3>();
+        elementals = new List<GameObject>();
         // Convert GameObject to Vector3
         foreach (GameObject go in path)
         {
@@ -65,7 +66,9 @@ public class GameManager : MonoBehaviour
 
     private GameObject SpawnElemental()
     {
-        return Instantiate(elemental, transform.position, transform.rotation);
+        int rng = Random.Range(0, possibleElementals.Count);
+        GameObject randomElemental = possibleElementals[rng];
+        return Instantiate(randomElemental, transform.position, transform.rotation);
     }
 
     public void DestroyElemental(GameObject elemental)
