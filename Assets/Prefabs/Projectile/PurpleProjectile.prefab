@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4981408759380913844}
   - component: {fileID: 455598995624340841}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: PurpleProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
