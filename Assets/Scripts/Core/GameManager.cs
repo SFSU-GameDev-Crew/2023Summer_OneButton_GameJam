@@ -13,7 +13,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float interval;
     [SerializeField] private Metronome metronome;
 
-    [SerializeField] private List<Vector2> path;
+    [Header("Path")]
+    // We're using GameObject so that we can make use of Unity's tilemap
+    [SerializeField] private List<GameObject> path;
+    private List<Vector3> pathInVector;
 
     [SerializeField] private List<GameObject> elementals;
 
@@ -21,6 +24,13 @@ public class GameManager : MonoBehaviour
     {
         if(useMetronomeTimer)
             metronome.SetInterval(interval);
+
+        pathInVector = new List<Vector3>();
+        // Convert GameObject to Vector3
+        foreach (GameObject go in path)
+        {
+            pathInVector.Add(go.transform.position);
+        }
     }
 
     private void OnEnable()
@@ -39,7 +49,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject newElemental = SpawnElemental();
             IFollowPath followPathComponent = newElemental.GetComponent<IFollowPath>();
-            followPathComponent.SetPath(path);
+            followPathComponent.SetPath(pathInVector);
             
             elementals.Add(newElemental);
             numOfSpawns--;

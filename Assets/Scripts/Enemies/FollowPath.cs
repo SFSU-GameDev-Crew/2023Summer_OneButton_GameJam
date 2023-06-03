@@ -6,7 +6,7 @@ public class FollowPath : MonoBehaviour, IFollowPath
 {
     [SerializeField] private GameObject navigatingAgent;
     
-    [SerializeField] private List<Vector2> path;
+    [SerializeField] private List<Vector3> path;
     private int offset = 0;
 
     public void SetStartOffset(int offset)
@@ -14,7 +14,7 @@ public class FollowPath : MonoBehaviour, IFollowPath
         this.offset = offset;
     }
     
-    public void SetPath(List<Vector2> path)
+    public void SetPath(List<Vector3> path)
     {
         this.path = path;
     }

@@ -6,7 +6,7 @@ public interface IFollowPath
 {
     public void SetStartOffset(int offset);
     
-    public void SetPath(List<Vector2> path);
+    public void SetPath(List<Vector3> path);
     
     public void MoveToNextNode();
 }
