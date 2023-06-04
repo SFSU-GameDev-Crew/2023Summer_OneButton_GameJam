@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 215641733759968527}
   - component: {fileID: 215641733759968520}
   - component: {fileID: 215641733759968521}
+  - component: {fileID: 241938571}
   m_Layer: 0
   m_Name: Pixel_Perfect_Camera
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &215641733759968520
 Camera:
@@ -104,3 +105,11 @@ MonoBehaviour:
   m_CropFrameX: 1
   m_CropFrameY: 1
   m_StretchFill: 1
+--- !u!81 &241938571
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215641733759968522}
+  m_Enabled: 1
