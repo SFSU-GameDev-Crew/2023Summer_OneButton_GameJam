@@ -312,6 +312,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7485598739273570357, guid: 4bab23a95cb388b9790e8130050e5fe3, type: 3}
+      propertyPath: loseScene
+      value: EndScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485598739273570357, guid: 4bab23a95cb388b9790e8130050e5fe3, type: 3}
+      propertyPath: nextScene
+      value: Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485598739273570357, guid: 4bab23a95cb388b9790e8130050e5fe3, type: 3}
       propertyPath: numOfSpawns
       value: 30
       objectReference: {fileID: 0}
