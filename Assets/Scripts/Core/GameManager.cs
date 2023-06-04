@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,15 +23,22 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> elementals;
 
+    private int tickCounter = 0;
+    private int spawnCounter = 0;
+
+    [Header("Scene Transition")]
+    [SerializeField] private string nextScene;
+    [SerializeField] private string loseScene;
+
     private void Start()
     {
         if (instance != null)
         {
-            Debug.Log("Multiple GameManager Detected. Removing this one");
             Destroy(this.gameObject);
         }
         instance = this;
 
+        spawnCounter = numOfSpawns;
         if(useMetronomeTimer)
             metronome.SetInterval(interval);
 
@@ -55,14 +63,24 @@ public class GameManager : MonoBehaviour
 
     private void Tick()
     {
-        if(numOfSpawns > 0)
+        if (tickCounter > path.Count + numOfSpawns)
+        {
+            SceneManager.LoadScene(loseScene);
+        }
+        else if (elementals.Count == 0 && spawnCounter == 0)
+        {
+            SceneManager.LoadScene(nextScene);
+        }
+
+
+        if(spawnCounter > 0)
         {
             GameObject newElemental = SpawnElemental();
             IFollowPath followPathComponent = newElemental.GetComponent<IFollowPath>();
             followPathComponent.SetPath(pathInVector);
             
             elementals.Add(newElemental);
-            numOfSpawns--;
+            spawnCounter--;
         }
 
         // Move each elemental
@@ -71,6 +89,8 @@ public class GameManager : MonoBehaviour
             IFollowPath followPathComponent = element.GetComponent<IFollowPath>();
             followPathComponent.MoveToNextNode();
         }
+
+        tickCounter++;
     }
 
     private GameObject SpawnElemental()
