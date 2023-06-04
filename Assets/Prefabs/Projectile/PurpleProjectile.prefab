@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3156702734160177352}
   - component: {fileID: 4981408759380913844}
   - component: {fileID: 455598995624340841}
+  - component: {fileID: -4234879557920343639}
   m_Layer: 0
   m_Name: PurpleProjectile
   m_TagString: Untagged
@@ -143,7 +144,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -164,3 +165,16 @@ MonoBehaviour:
   launchOnStart: 0
   force_magnitude: 10
   rigid_body_component: {fileID: 3156702734160177352}
+--- !u!114 &-4234879557920343639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3616857378784696116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aafd9d7eb664064baf9a2906a108ae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}

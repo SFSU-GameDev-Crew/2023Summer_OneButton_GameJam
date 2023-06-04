@@ -78,10 +78,12 @@ public class PlayerController : MonoBehaviour
         // Choose random element
         int rng = Random.Range(0, possibleElementals.Count);
         GameObject randomElemental = possibleElementals[rng];
+
         
         // Spawn Elemental
         currentElementalGameObject = Instantiate(randomElemental, placeholder.transform.position, transform.rotation, placeholder.transform);
-        
+        currentElementalGameObject.tag = "Projectile";
+
         // Launch Elemental
         currentElemental = currentElementalGameObject.GetComponent<ILaunch>();
 
