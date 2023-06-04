@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private ILaunch currentElemental; 
     [SerializeField] private GameObject currentElementalGameObject;
 
+    private int timeCount = 0;
+
     private void Start()
     {
         SpawnElemental();
@@ -40,23 +42,35 @@ public class PlayerController : MonoBehaviour
         canShoot = true;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        // Shoots a projectile in the forward direction
-        if(Input.GetButtonDown("Jump") && canShoot)
+
+        if (Input.GetButtonUp("Jump"))
         {
-            canShoot = false;
-            fireCooldown.SetCooldown(fireCooldownInSeconds);
-            // Choose random element and launches it forward
-            // from the player's direction
-            StartCoroutine("PerformShoot");
+            if (timeCount > 50)
+            {
+                rotationSpeed = -rotationSpeed;
+            }
+            // Shoots a projectile in the forward direction
+            else if (canShoot)
+            {
+                canShoot = false;
+                fireCooldown.SetCooldown(fireCooldownInSeconds);
+                // Choose random element and launches it forward
+                // from the player's direction
+                StartCoroutine("PerformShoot");
+            }
+            // Resets after each key release
+            timeCount = 0;
         }
 
-        // Rotates the Camera
-        if(Input.GetButton("Jump"))
+        else if (Input.GetButton("Jump"))
         {
-            transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime * Mathf.Rad2Deg);
+            timeCount++;
         }
+
+        transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime * Mathf.Rad2Deg);
+
     }
 
     private GameObject SpawnElemental()
