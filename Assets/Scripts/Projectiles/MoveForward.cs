@@ -8,6 +8,9 @@ public class MoveForward : MonoBehaviour, ILaunch
     [SerializeField] private float force_magnitude = 1.0f;
     [SerializeField] private Rigidbody2D rigid_body_component;
 
+    [SerializeField] private bool shouldPlaySoundOnLaunch;
+    [SerializeField] private AudioSource audioSource;
+
     private void Start()
     {
         if(!launchOnStart) return;
@@ -19,5 +22,8 @@ public class MoveForward : MonoBehaviour, ILaunch
         Vector3 force_direction = transform.right;
         Vector3 force = force_magnitude * force_direction;
         rigid_body_component.AddForce(force, ForceMode2D.Impulse);
+
+        if (shouldPlaySoundOnLaunch)
+            audioSource.Play();
     }
 }
