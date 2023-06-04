@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &215641733759968520
 Camera:
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 100
-  m_RefResolutionX: 400
-  m_RefResolutionY: 400
+  m_RefResolutionX: 64
+  m_RefResolutionY: 32
   m_UpscaleRT: 0
   m_PixelSnapping: 1
   m_CropFrameX: 1
