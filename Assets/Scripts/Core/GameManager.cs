@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance; // Singleton
+
     [Header("Elementals")]
     [SerializeField] private int numOfSpawns;
     [SerializeField] private List<GameObject> possibleElementals;
@@ -22,6 +24,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        if (instance != null)
+        {
+            Debug.Log("Multiple GameManager Detected. Removing this one");
+            Destroy(this.gameObject);
+        }
+        instance = this;
+
         if(useMetronomeTimer)
             metronome.SetInterval(interval);
 
