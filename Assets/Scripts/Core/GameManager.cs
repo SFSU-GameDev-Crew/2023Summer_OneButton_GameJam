@@ -65,11 +65,11 @@ public class GameManager : MonoBehaviour
     {
         if (tickCounter > path.Count + numOfSpawns)
         {
+            // Lose()
             SceneManager.LoadScene(loseScene);
         }
         else if (elementals.Count == 0 && spawnCounter == 0)
         {
-            // Lose()
             SceneManager.LoadScene(nextScene);
         }
 
@@ -108,6 +108,6 @@ public class GameManager : MonoBehaviour
 
     public void Lose()
     {
-        SceneManager.LoadScene(nextScene);
+        SceneManager.LoadScene(loseScene);
     }
 }
