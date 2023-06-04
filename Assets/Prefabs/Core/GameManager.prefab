@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7485598739273570357
 MonoBehaviour:
@@ -45,7 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717bb5a81df48b284bde03d6c88e4160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7726885534116849847, guid: 7b0ee99beb1697d5499fb614dbe79540, type: 3}
+  numOfSpawns: 0
+  possibleElementals:
+  - {fileID: 8734708485560974573, guid: 2f8a2daaa2f6c11d58aeab76c30f0931, type: 3}
+  - {fileID: 2860909971643921832, guid: d9afb6fa9cb33d407a7bb6d73170d720, type: 3}
+  - {fileID: 7726885534116849847, guid: 7b0ee99beb1697d5499fb614dbe79540, type: 3}
+  - {fileID: 1616681212323445, guid: 519eedb89102404f7bf5556eb206875f, type: 3}
   useMetronomeTimer: 1
   interval: 0.5
   metronome: {fileID: 7485598739273570358}
