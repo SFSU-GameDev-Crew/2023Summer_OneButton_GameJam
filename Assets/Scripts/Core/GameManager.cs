@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     {
         if (tickCounter > path.Count + numOfSpawns)
         {
+            // Lose()
             SceneManager.LoadScene(loseScene);
         }
         else if (elementals.Count == 0 && spawnCounter == 0)
@@ -103,5 +104,10 @@ public class GameManager : MonoBehaviour
     public void DestroyElemental(GameObject elemental)
     {
         elementals.Remove(elemental);
+    }
+
+    public void Lose()
+    {
+        SceneManager.LoadScene(loseScene);
     }
 }
